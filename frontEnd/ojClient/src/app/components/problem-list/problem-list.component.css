@@ -1,0 +1,39 @@
+  .container {
+    width: 70%;
+    border: 0.5px solid #efefef;
+    margin: 0 auto;
+  }
+  a {
+    display: block;
+    text-align: left;
+    border-top: 0.5px solid #efefef;
+    font-size: 25px;
+    padding: 20px;
+
+  }
+  .diffSpan {
+    color: white;
+    display: inline-block;
+    width: 100px;
+    margin-right: 10px;
+    text-align: center;
+    
+    border-radius: 3px;
+    line-height: 100%;
+    padding: 5px 0px;;
+  }
+
+  .difficulty-easy {
+    background-color: #42ebf4;
+  }
+
+  .difficulty-medium {
+    background-color: #92cf5c;
+  }
+  .difficulty-hard {
+    background-color: #dd0d1e;
+  }
+
+  .difficulty-super {
+    background-color: #8d16e2;
+  }
