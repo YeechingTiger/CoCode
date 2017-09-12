@@ -1,0 +1,23 @@
+
+<form class="example-form">
+  <table class="example-full-width" cellspacing="0"><tr>
+    <td><md-form-field class="example-full-width">
+      <input mdInput placeholder="Problem Name" [(ngModel)]="newProblem.name" name="name">
+    </md-form-field></td>
+  </tr></table>
+
+  <p>
+    <md-form-field class="example-full-width">
+      <textarea mdInput placeholder="Problem Description" [(ngModel)]="newProblem.desc" name="desc"></textarea>
+    </md-form-field>
+  </p>
+
+  <md-select placeholder="Problem Difficulty" [(ngModel)]="newProblem.diff" name="diff">
+    <md-option *ngFor="let difficulty of difficulties" [value]="difficulty">
+      {{difficulty}}
+    </md-option>
+  </md-select>
+  <br>
+  <br>
+  <button md-raised-button color="primary" (click)="addProblem()">Submit!</button>
+</form>

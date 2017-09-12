@@ -1,3 +1,11 @@
-<p>
-  problem-detail works!
-</p>
+<div *ngIf="problem">
+  <p>
+    {{ problem.id }}. 
+    {{ problem.name }}
+  </p>
+  
+  <p>
+    {{ problem.desc }}
+  </p>
+</div>
+
