@@ -1,4 +1,4 @@
-<md-select placeholder="Language" [ngModel]="language" (ngModelChange)="changeLanguage($event)" name="language">
+<md-select placeholder="Language" [(ngModel)]="language" (ngModelChange)="changeLanguage($event)" name="language">
     <md-option *ngFor="let languaget of languages" [value]="languaget">
       {{languaget}}
     </md-option>
