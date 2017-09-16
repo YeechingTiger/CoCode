@@ -77,22 +77,25 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_problem_list_problem_list_component__ = __webpack_require__("../../../../../src/app/components/problem-list/problem-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_routes__ = __webpack_require__("../../../../../src/app/app.routes.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/@angular/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routes__ = __webpack_require__("../../../../../src/app/app.routes.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_data_service__ = __webpack_require__("../../../../../src/app/services/data.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_problem_list_problem_list_component__ = __webpack_require__("../../../../../src/app/components/problem-list/problem-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_problem_detail_problem_detail_component__ = __webpack_require__("../../../../../src/app/components/problem-detail/problem-detail.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_nav_bar_nav_bar_component__ = __webpack_require__("../../../../../src/app/components/nav-bar/nav-bar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_problem_add_form_problem_add_form_component__ = __webpack_require__("../../../../../src/app/components/problem-add-form/problem-add-form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_ace_ace_component__ = __webpack_require__("../../../../../src/app/components/ace/ace.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -119,31 +122,33 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["M" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_4__components_problem_list_problem_list_component__["a" /* ProblemListComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__components_problem_list_problem_list_component__["a" /* ProblemListComponent */],
             __WEBPACK_IMPORTED_MODULE_10__components_problem_detail_problem_detail_component__["a" /* ProblemDetailComponent */],
             __WEBPACK_IMPORTED_MODULE_11__components_nav_bar_nav_bar_component__["a" /* NavBarComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__components_problem_add_form_problem_add_form_component__["a" /* ProblemAddFormComponent */]
+            __WEBPACK_IMPORTED_MODULE_12__components_problem_add_form_problem_add_form_component__["a" /* ProblemAddFormComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__components_ace_ace_component__["a" /* AceComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-            __WEBPACK_IMPORTED_MODULE_6__angular_http__["c" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_forms__["c" /* FormsModule */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_material__["a" /* MdButtonModule */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_material__["b" /* MdCardModule */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_material__["e" /* MdMenuModule */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_material__["g" /* MdToolbarModule */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_material__["c" /* MdIconModule */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_material__["d" /* MdInputModule */],
-            __WEBPACK_IMPORTED_MODULE_7__angular_material__["f" /* MdSelectModule */],
-            __WEBPACK_IMPORTED_MODULE_8__app_routes__["a" /* routing */]
+            __WEBPACK_IMPORTED_MODULE_4__angular_http__["c" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["c" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MdButtonModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["b" /* MdCardModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["f" /* MdMenuModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["h" /* MdToolbarModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["d" /* MdIconModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["e" /* MdInputModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["g" /* MdSelectModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_material__["c" /* MdDialogModule */],
+            __WEBPACK_IMPORTED_MODULE_6__app_routes__["a" /* routing */]
         ],
         providers: [{
                 provide: "data",
-                useClass: __WEBPACK_IMPORTED_MODULE_9__services_data_service__["a" /* DataService */]
+                useClass: __WEBPACK_IMPORTED_MODULE_7__services_data_service__["a" /* DataService */]
             }],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_9__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -186,6 +191,90 @@ var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["b" /* RouterModule 
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/ace/ace.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "@media screen {\n    #editor { \n        top: 0;\n        right: 0;\n        bottom: 0;\n        left: 0;\n        height: 600px;\n    }\n}\n\nbutton {\n    margin-left: 80%;\n    margin: 10px auto;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/ace/ace.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<md-select placeholder=\"Language\" [ngModel]=\"language\" (ngModelChange)=\"changeLanguage($event)\" name=\"language\">\n    <md-option *ngFor=\"let languaget of languages\" [value]=\"languaget\">\n      {{languaget}}\n    </md-option>\n</md-select>\n<button md-raised-button (click)=\"resetEditor()\" color=\"warn\">Reset</button>\n<div id=\"editor\">\n  \n</div>\n<button md-raised-button (click)=\"submit()\" color=\"accent\">Submit</button>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/ace/ace.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AceComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AceComponent = (function () {
+    function AceComponent() {
+        this.languages = ['Java', 'C++', 'Python'];
+        this.language = 'Java'; // Default
+        this.defaultContent = {
+            'Java': "public class Solution {\n      public static void main(String[] args) {\n        // Type your code here\n      }\n}",
+            'C++': "#include <iostream>\nusing namespace std;\n\u200B\nint main() {\n   // Type your C++ code here\n   return 0;\n}",
+            'Python': "class Solution:\n    def example():\n        # Write your Python code here"
+        };
+    }
+    AceComponent.prototype.ngOnInit = function () {
+        this.editor = ace.edit("editor");
+        this.editor.setTheme("ace/theme/eclipse");
+        this.resetEditor();
+        this.editor.$blockScrolling = Infinity;
+    };
+    AceComponent.prototype.resetEditor = function () {
+        this.editor.getSession().setMode("ace/mode/" + (this.language === "C++" ? "c_cpp" : this.language.toLowerCase()));
+        this.editor.setValue(this.defaultContent[this.language]);
+    };
+    AceComponent.prototype.submit = function () {
+        var user_code = this.editor.getValue();
+        console.log(user_code);
+    };
+    AceComponent.prototype.changeLanguage = function (value) {
+        this.language = value;
+        this.resetEditor();
+    };
+    return AceComponent;
+}());
+AceComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-ace',
+        template: __webpack_require__("../../../../../src/app/components/ace/ace.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/ace/ace.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], AceComponent);
+
+//# sourceMappingURL=ace.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/nav-bar/nav-bar.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -194,7 +283,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".nav-spacer {\n    -webkit-box-flex: 1;\n        -ms-flex: 1 1 auto;\n            flex: 1 1 auto;\n}\n\n.nav-icon {\n    padding: 0 5px;\n    padding-left: 5px;\n}", ""]);
+exports.push([module.i, ".nav-spacer {\n    -webkit-box-flex: 1;\n        -ms-flex: 1 1 auto;\n            flex: 1 1 auto;\n}\n\n.nav-icon {\n    padding-left: 5px;\n}", ""]);
 
 // exports
 
@@ -207,7 +296,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/nav-bar/nav-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<md-toolbar color=\"primary\">\n  <md-icon class=\"nav-icon\">code</md-icon>\n  <span>{{title}}</span>\n  <span class=\"nav-spacer\"></span>\n  <button md-icon-button [mdMenuTriggerFor]=\"menu\">\n    <md-icon class=\"nav-icon\">perm_identity</md-icon>\n  </button>\n  <md-menu #menu=\"mdMenu\">\n    <button md-menu-item>\n      <md-icon class=\"nav-icon\">assignment_ind</md-icon>\n      <span>SignUp</span>\n    </button>\n    <button md-menu-item>\n      <md-icon class=\"nav-icon\">input</md-icon>\n      <span>LogIn</span>\n    </button>\n  </md-menu>\n</md-toolbar>\n\n"
+module.exports = "<md-toolbar color=\"primary\">\n  <md-icon class=\"nav-icon\">code</md-icon>\n  <span>{{title}}</span>\n  <span class=\"nav-spacer\"></span>\n  <button md-button>\n    Sign In\n  </button>\n  <button md-icon-button [mdMenuTriggerFor]=\"menu\">\n    <md-icon class=\"nav-icon\">perm_identity</md-icon>\n  </button>\n  <md-menu #menu=\"mdMenu\">\n    <button md-menu-item>\n      <md-icon class=\"nav-icon\">assignment_ind</md-icon>\n      <span>Profile</span>\n    </button>\n    <button md-menu-item>\n      <md-icon class=\"nav-icon\">input</md-icon>\n      <span>LogOut</span>\n    </button>\n  </md-menu>\n</md-toolbar>\n\n"
 
 /***/ }),
 
@@ -335,7 +424,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".editor1 {\n    margin: 0 auto;\n    width: 90%;\n}\n\n.problem {\n    margin: 10px auto;\n    width: 90%;\n}", ""]);
 
 // exports
 
@@ -348,7 +437,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/problem-detail/problem-detail.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"problem\">\n  <p>\n    {{ problem.id }}. \n    {{ problem.name }}\n  </p>\n  \n  <p>\n    {{ problem.desc }}\n  </p>\n</div>\n\n"
+module.exports = "<div *ngIf=\"problem\">\n  <div class=\"problem\">\n    <md-card class=\"example-card\">\n      <md-card-header>\n        <md-card-title>{{ problem.id }}. \n          {{ problem.name }}</md-card-title>\n        <md-card-subtitle>{{ problem.diff }}</md-card-subtitle>\n      </md-card-header>\n      <md-card-content>\n        <p>\n          {{ problem.desc }}\n        </p>\n        \n      </md-card-content>\n      \n    </md-card>\n  </div>\n\n  <div class=\"editor1\">\n    <app-ace></app-ace>\n  </div>\n</div>\n\n\n\n"
 
 /***/ }),
 

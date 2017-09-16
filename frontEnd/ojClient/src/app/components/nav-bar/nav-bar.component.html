@@ -2,17 +2,20 @@
   <md-icon class="nav-icon">code</md-icon>
   <span>{{title}}</span>
   <span class="nav-spacer"></span>
+  <button md-button>
+    Sign In
+  </button>
   <button md-icon-button [mdMenuTriggerFor]="menu">
     <md-icon class="nav-icon">perm_identity</md-icon>
   </button>
   <md-menu #menu="mdMenu">
     <button md-menu-item>
       <md-icon class="nav-icon">assignment_ind</md-icon>
-      <span>SignUp</span>
+      <span>Profile</span>
     </button>
     <button md-menu-item>
       <md-icon class="nav-icon">input</md-icon>
-      <span>LogIn</span>
+      <span>LogOut</span>
     </button>
   </md-menu>
 </md-toolbar>

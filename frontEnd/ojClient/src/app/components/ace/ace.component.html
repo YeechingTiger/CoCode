@@ -1,0 +1,10 @@
+<md-select placeholder="Language" [ngModel]="language" (ngModelChange)="changeLanguage($event)" name="language">
+    <md-option *ngFor="let languaget of languages" [value]="languaget">
+      {{languaget}}
+    </md-option>
+</md-select>
+<button md-raised-button (click)="resetEditor()" color="warn">Reset</button>
+<div id="editor">
+  
+</div>
+<button md-raised-button (click)="submit()" color="accent">Submit</button>

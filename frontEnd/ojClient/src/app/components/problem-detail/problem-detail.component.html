@@ -1,11 +1,25 @@
 <div *ngIf="problem">
-  <p>
-    {{ problem.id }}. 
-    {{ problem.name }}
-  </p>
-  
-  <p>
-    {{ problem.desc }}
-  </p>
+  <div class="problem">
+    <md-card class="example-card">
+      <md-card-header>
+        <md-card-title>{{ problem.id }}. 
+          {{ problem.name }}</md-card-title>
+        <md-card-subtitle>{{ problem.diff }}</md-card-subtitle>
+      </md-card-header>
+      <md-card-content>
+        <p>
+          {{ problem.desc }}
+        </p>
+        
+      </md-card-content>
+      
+    </md-card>
+  </div>
+
+  <div class="editor1">
+    <app-ace></app-ace>
+  </div>
 </div>
+
+
 
