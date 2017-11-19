@@ -22,6 +22,7 @@ import { ProblemDetailComponent } from './components/problem-detail/problem-deta
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ProblemAddFormComponent } from './components/problem-add-form/problem-add-form.component';
 import { AceComponent } from './components/ace/ace.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AceComponent } from './components/ace/ace.component';
     ProblemDetailComponent,
     NavBarComponent,
     ProblemAddFormComponent,
-    AceComponent
+    AceComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

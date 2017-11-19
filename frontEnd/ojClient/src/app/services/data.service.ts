@@ -23,6 +23,17 @@ export class DataService {
       return this.problemsSource.asObservable();
   }
 
+  buildAndRun(data): Promise<Object> {
+    let headers: Headers = new Headers({ 'content-type': 'application/json'});
+    let options: RequestOptions = new RequestOptions({ headers: headers });
+    return this.http.post('api/v1/build_and_run', data, options)
+    .toPromise()
+    .then((res: Response) => {
+      return res.json();
+    })
+    .catch(this.handleError);
+  }
+
   getProblem(id: number): Promise<Problem> {
     return this.http.get(`api/v1/problems/${id}`)
                       .toPromise()

@@ -89,12 +89,14 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_nav_bar_nav_bar_component__ = __webpack_require__("../../../../../src/app/components/nav-bar/nav-bar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_problem_add_form_problem_add_form_component__ = __webpack_require__("../../../../../src/app/components/problem-add-form/problem-add-form.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_ace_ace_component__ = __webpack_require__("../../../../../src/app/components/ace/ace.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pipes_search_pipe__ = __webpack_require__("../../../../../src/app/pipes/search.pipe.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -129,7 +131,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_11__components_problem_detail_problem_detail_component__["a" /* ProblemDetailComponent */],
             __WEBPACK_IMPORTED_MODULE_12__components_nav_bar_nav_bar_component__["a" /* NavBarComponent */],
             __WEBPACK_IMPORTED_MODULE_13__components_problem_add_form_problem_add_form_component__["a" /* ProblemAddFormComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__components_ace_ace_component__["a" /* AceComponent */]
+            __WEBPACK_IMPORTED_MODULE_14__components_ace_ace_component__["a" /* AceComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__pipes_search_pipe__["a" /* SearchPipe */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -218,7 +221,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/ace/ace.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<md-select placeholder=\"Language\" [(ngModel)]=\"language\" (ngModelChange)=\"changeLanguage($event)\" name=\"language\">\n    <md-option *ngFor=\"let languaget of languages\" [value]=\"languaget\">\n      {{languaget}}\n    </md-option>\n</md-select>\n<button md-raised-button (click)=\"resetEditor()\" color=\"warn\">Reset</button>\n<div id=\"editor\">\n  \n</div>\n<button md-raised-button (click)=\"submit()\" color=\"accent\">Submit</button>"
+module.exports = "<md-select placeholder=\"Language\" [(ngModel)]=\"language\" (ngModelChange)=\"changeLanguage($event)\" name=\"language\">\n    <md-option *ngFor=\"let languaget of languages\" [value]=\"languaget\">\n      {{languaget}}\n    </md-option>\n</md-select>\n<button md-raised-button (click)=\"resetEditor()\" color=\"warn\">Reset</button>\n<div id=\"editor\">\n  \n</div>\n<button md-raised-button (click)=\"submit()\" color=\"accent\">Submit</button>\n<p>{{exeResponse}}</p>\n"
 
 /***/ }),
 
@@ -244,8 +247,9 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 
 
 var AceComponent = (function () {
-    function AceComponent(collaboration, route) {
+    function AceComponent(collaboration, data, route) {
         this.collaboration = collaboration;
+        this.data = data;
         this.route = route;
         this.languages = ['Java', 'C++', 'Python'];
         this.language = 'Java'; // Default
@@ -278,14 +282,28 @@ var AceComponent = (function () {
                 _this.collaboration.change(JSON.stringify(e));
             }
         });
+        this.editor.getSession().getSelection().on("changeCursor", function () {
+            var cursor = _this.editor.getSession().getSelection().getCursor();
+            _this.collaboration.cursorMove(JSON.stringify(cursor));
+            //console.log("cursor moved!");
+        });
+        this.collaboration.restoreBuffer();
     };
     AceComponent.prototype.resetEditor = function () {
         this.editor.getSession().setMode("ace/mode/" + (this.language === "C++" ? "c_cpp" : this.language.toLowerCase()));
         this.editor.setValue(this.defaultContent[this.language]);
+        this.exeResponse = "";
     };
     AceComponent.prototype.submit = function () {
+        var _this = this;
         var user_code = this.editor.getValue();
-        console.log(user_code);
+        var data = {
+            user_code: user_code,
+            lang: this.language.toLowerCase()
+        };
+        this.data.buildAndRun(data)
+            .then(function (res) { return _this.exeResponse = res.text; });
+        //console.log(user_code);
     };
     AceComponent.prototype.changeLanguage = function (value) {
         this.language = value;
@@ -300,7 +318,8 @@ AceComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/app/components/ace/ace.component.css")]
     }),
     __param(0, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('collaboration')),
-    __metadata("design:paramtypes", [Object, typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object])
+    __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])('data')),
+    __metadata("design:paramtypes", [Object, Object, typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object])
 ], AceComponent);
 
 var _a;
@@ -329,7 +348,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/nav-bar/nav-bar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<md-toolbar color=\"primary\">\n  <md-icon class=\"nav-icon\">code</md-icon>\n  <span>{{title}}</span>\n  <span class=\"nav-spacer\"></span>\n  <button md-button>\n    Sign In\n  </button>\n  <button md-icon-button [mdMenuTriggerFor]=\"menu\">\n    <md-icon class=\"nav-icon\">perm_identity</md-icon>\n  </button>\n  <md-menu #menu=\"mdMenu\">\n    <button md-menu-item>\n      <md-icon class=\"nav-icon\">assignment_ind</md-icon>\n      <span>Profile</span>\n    </button>\n    <button md-menu-item>\n      <md-icon class=\"nav-icon\">input</md-icon>\n      <span>LogOut</span>\n    </button>\n  </md-menu>\n</md-toolbar>\n\n"
+module.exports = "<md-toolbar color=\"primary\">\n  <md-icon class=\"nav-icon\">code</md-icon>\n  <span>{{title}}</span>\n  <span class=\"nav-spacer\"></span>\n  <input type=\"text\">\n  <button md-button>\n    Sign In\n  </button>\n  <button md-icon-button [mdMenuTriggerFor]=\"menu\">\n    <md-icon class=\"nav-icon\">perm_identity</md-icon>\n  </button>\n  <md-menu #menu=\"mdMenu\">\n    <button md-menu-item>\n      <md-icon class=\"nav-icon\">assignment_ind</md-icon>\n      <span>Profile</span>\n    </button>\n    <button md-menu-item>\n      <md-icon class=\"nav-icon\">input</md-icon>\n      <span>LogOut</span>\n    </button>\n  </md-menu>\n</md-toolbar>\n\n"
 
 /***/ }),
 
@@ -549,7 +568,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/problem-list/problem-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<app-problem-add-form></app-problem-add-form>\n<div class=\"container\">\n    <md-list>\n        <md-list-item *ngFor=\"let problem of problems\">\n          <a md-button class=\"row\" [routerLink] =\"['/problems', problem.id]\">\n              <span class=\"{{'diffSpan difficulty-' + problem.diff.toLocaleLowerCase() }}\">\n                {{problem.diff}}\n              </span>\n              {{problem.id}}. {{problem.name}} \n            </a>\n        </md-list-item>\n      </md-list>\n</div>\n"
+module.exports = "\n<app-problem-add-form></app-problem-add-form>\n<div class=\"container\">\n    <md-list>\n        <md-list-item *ngFor=\"let problem of problems\">\n          <a md-button class=\"row\" [routerLink] =\"['/problems', problem.id]\">\n              <span class=\"{{'diffSpan difficulty-' + problem.diff.toLocaleLowerCase() }}\">\n                {{problem.diff | uppercase}}\n              </span>\n              {{problem.id}}. {{problem.name}} \n            </a>\n        </md-list-item>\n      </md-list>\n</div>\n"
 
 /***/ }),
 
@@ -601,12 +620,44 @@ ProblemListComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/pipes/search.pipe.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var SearchPipe = (function () {
+    function SearchPipe() {
+    }
+    SearchPipe.prototype.transform = function (value, args) {
+        return null;
+    };
+    return SearchPipe;
+}());
+SearchPipe = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["X" /* Pipe */])({
+        name: 'search'
+    })
+], SearchPipe);
+
+//# sourceMappingURL=search.pipe.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/Collaboration.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CollaborationService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_colors__ = __webpack_require__("../../../../../src/assets/colors.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -617,10 +668,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var CollaborationService = (function () {
     function CollaborationService() {
+        this.clientsInfo = {};
+        this.clientNum = 0;
     }
     CollaborationService.prototype.init = function (editor, sessionId) {
+        var _this = this;
         this.collaborationSocket = io(window.location.origin, { query: 'sessionId=' + sessionId });
         this.collaborationSocket.on("change", function (delta) {
             console.log('collaboration: editor changed by' + delta);
@@ -628,12 +683,45 @@ var CollaborationService = (function () {
             editor.lastAppliedChange = delta;
             editor.getSession().getDocument().applyDeltas([delta]);
         });
-        this.collaborationSocket.on("message", function (message) {
-            console.log("Receive: " + message);
+        this.collaborationSocket.on("cursorMove", function (cursor) {
+            console.log("cursor move:" + cursor);
+            var session = editor.getSession();
+            cursor = JSON.parse(cursor);
+            var x = cursor['row'];
+            var y = cursor['column'];
+            var changeClientId = cursor['socketId'];
+            console.log(x + ' ' + y + ' ' + changeClientId);
+            if (changeClientId in _this.clientsInfo) {
+                session.removeMarker(_this.clientsInfo[changeClientId]['marker']);
+            }
+            else {
+                _this.clientsInfo[changeClientId] = {};
+                var css = document.createElement("style");
+                css.type = "text/css";
+                css.innerHTML = ".editor_cursor_" + changeClientId +
+                    " { position: absolute; background: " + __WEBPACK_IMPORTED_MODULE_1__assets_colors__["a" /* COLORS */][_this.clientNum] + ";"
+                    + " z-index: 100; width: 3px !important; }";
+                document.body.appendChild(css);
+                _this.clientNum++;
+            }
+            // Add marker
+            var Range = ace.require('ace/range').Range;
+            var newMarker = session.addMarker(new Range(x, y, x, y + 1), 'editor_cursor_' + changeClientId, true);
+            _this.clientsInfo[changeClientId]['marker'] = newMarker;
         });
+        // // Test message
+        // this.collaborationSocket.on("message", (message) => {
+        //   console.log("Receive: " + message);
+        // });
     };
     CollaborationService.prototype.change = function (delta) {
         this.collaborationSocket.emit("change", delta);
+    };
+    CollaborationService.prototype.cursorMove = function (cursor) {
+        this.collaborationSocket.emit("cursorMove", cursor);
+    };
+    CollaborationService.prototype.restoreBuffer = function () {
+        this.collaborationSocket.emit("restoreBuffer");
     };
     return CollaborationService;
 }());
@@ -685,6 +773,16 @@ var DataService = (function () {
             .catch(this.handleError);
         return this.problemsSource.asObservable();
     };
+    DataService.prototype.buildAndRun = function (data) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'content-type': 'application/json' });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        return this.http.post('api/v1/build_and_run', data, options)
+            .toPromise()
+            .then(function (res) {
+            return res.json();
+        })
+            .catch(this.handleError);
+    };
     DataService.prototype.getProblem = function (id) {
         return this.http.get("api/v1/problems/" + id)
             .toPromise()
@@ -717,6 +815,56 @@ DataService = __decorate([
 
 var _a;
 //# sourceMappingURL=data.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/assets/colors.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return COLORS; });
+var COLORS = [
+    "#0000ff",
+    "#a52a2a",
+    "#00ffff",
+    "#00008b",
+    "#008b8b",
+    "#a9a9a9",
+    "#006400",
+    "#bdb76b",
+    "#8b008b",
+    "#556b2f",
+    "#ff8c00",
+    "#9932cc",
+    "#8b0000",
+    "#e9967a",
+    "#9400d3",
+    "#ff00ff",
+    "#ffd700",
+    "#008000",
+    "#4b0082",
+    "#f0e68c",
+    "#add8e6",
+    "#e0ffff",
+    "#90ee90",
+    "#d3d3d3",
+    "#ffb6c1",
+    "#ffffe0",
+    "#00ff00",
+    "#ff00ff",
+    "#800000",
+    "#000080",
+    "#808000",
+    "#ffa500",
+    "#ffc0cb",
+    "#800080",
+    "#800080",
+    "#ff0000",
+    "#c0c0c0",
+    "#ffffff",
+    "#ffff00"
+];
+//# sourceMappingURL=colors.js.map
 
 /***/ }),
 

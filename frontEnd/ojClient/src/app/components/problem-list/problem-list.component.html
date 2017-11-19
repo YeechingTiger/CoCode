@@ -5,7 +5,7 @@
         <md-list-item *ngFor="let problem of problems">
           <a md-button class="row" [routerLink] ="['/problems', problem.id]">
               <span class="{{'diffSpan difficulty-' + problem.diff.toLocaleLowerCase() }}">
-                {{problem.diff}}
+                {{problem.diff | uppercase}}
               </span>
               {{problem.id}}. {{problem.name}} 
             </a>
